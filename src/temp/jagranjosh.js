@@ -1,9 +1,9 @@
-exports.ndtvnews = {
-    feedSelector: ".rss_list li",
-    newsSelector: ".ins_storybody p",
+exports.jagranjosh = {
+    feedSelector: '.pB10',
+    newsSelector: '.article-det p',
     getfeedData: (e, $) => {
-        let category_link = $(e).find("a").attr("href");
-        let category_name = $(e).find("a").text();
+        let category_link = ($(e).find("a").attr("href"));
+        let category_name = $(e).text();
         return { category_link, category_name }
     },
     getNewsContent: async function (page) {
@@ -13,4 +13,5 @@ exports.ndtvnews = {
 
         return textContent
     }
+
 }

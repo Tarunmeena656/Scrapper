@@ -1,12 +1,11 @@
 const channelModel = require('../models/channel')
 const { getAllFeedsFromElemets } = require("../utils/getFeed");
-const schedule = require('node-schedule')
 const { addNewsToQueue } = require('./news_controller');
 
 
 
 
-exports.startScrapping = async (req, res,next) => {
+exports.startScrapping = async (req, res) => {
     try {
         const channels = await channelModel.find();
         for (const channel of channels) {
@@ -21,6 +20,6 @@ exports.startScrapping = async (req, res,next) => {
         res.send("Start Scrapping")
 
     } catch (err) {
-     next(err)
+       console.log(err)
     }
 }

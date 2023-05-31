@@ -7,10 +7,11 @@ exports.indiatoday = {
         return { category_link, category_name }
     },
     getNewsContent: async function (page) {
-        const textContent = await page.evaluate(function (selector) {
-            return document.querySelector(selector)?.textContent
-        }, this.newsSelector)
-        return textContent;
+        const textContent = await page.$$eval(this.newsSelector, news => {
+             return (news.map(news => news.textContent)).join(' ')
+        })
+
+        return textContent
     }
 
 }

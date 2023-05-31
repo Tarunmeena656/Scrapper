@@ -3,10 +3,10 @@ const FeedModel = require('../models/feed')
 const NewsModel = require("../models/feedNews");
 const { NewsQueue } = require('../utils/Queue')
 const channelModel = require('../models/channel')
+const { excludeFeed } = require('../utils/urlExcluded')
 
 
-
-exports.addNewsToQueue = async (req, res ,next) => {
+exports.addNewsToQueue = async (req, res) => {
     try {
 
         const newsLinks = await NewsModel.find({}, "link -_id");
@@ -20,26 +20,37 @@ exports.addNewsToQueue = async (req, res ,next) => {
         );
 
         const feedData = await FeedModel.find();
-        
+
         for (const data of feedData) {
-            const channel = await channelModel.findById(data.channelId);
-            const { channel_name } = channel
-            const rss = await parse(data.category_link);
+            try {
+                const channel = await channelModel.findById(data.channelId);
+                const { channel_name } = channel
 
+                if (!excludeFeed[channel_name].includes(data.category_name)) {
+                    const rss = await parse(data.category_link);
+                    for (let item of rss.items) {
+                        if (!linkArray.includes(item.link)) {
+                            await NewsQueue.add({
+                                ...item,
+                                feedId: data._id,
+                                channelId: data.channelId,
+                                channel_name
 
-            for (let item of rss.items) {
-                if (!linkArray.includes(item.link)) {
-                    await NewsQueue.add({
-                        ...item,
-                        feedId: data._id,
-                        channelId: data.channelId,
-                        channel_name
+                            });
+                        }
+                    }
 
-                    });
                 }
+                console.log(data.category_link)
+
+            }
+            catch (err) {
+                console.log("err----", err?.config?.url)
             }
         }
+
     } catch (err) {
-        next(err);
+        console.log("url failed----", err?.config?.url)
+
     }
 };

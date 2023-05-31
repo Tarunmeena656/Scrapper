@@ -1,7 +1,6 @@
 var validUrl = require("valid-url");
 const cheerio = require("cheerio");
-const Selector = require('../temp/Selector')
-
+const Selector = require('../temp/Selector');
 const axios = require("axios");
 const FeedModel = require("../models/feed");
 
@@ -9,17 +8,17 @@ const createAllElementList = async (channel) => {
   try {
     const { channel_name, channel_link } = channel;
     const response = await axios.get(channel_link);
-   
+
     const $ = cheerio.load(response.data);
     let Element;
 
     const channelname = channel_name.toLowerCase().replaceAll(" ", "");
-    
+
     if (channelname in Selector) {
-     
+
       Element = $(Selector[channelname]['feedSelector']).toArray();
     }
-    
+
     return { Element, $, channelname };
   } catch (err) {
     console.log(err);
@@ -31,9 +30,9 @@ const createAllElementList = async (channel) => {
 exports.getAllFeedsFromElemets = async (channel) => {
   try {
     const { channel_link, _id } = channel;
-    
-    const { Element, $, channelname } = await createAllElementList(channel);
 
+    const { Element, $, channelname } = await createAllElementList(channel);
+    console.log(channelname)
     const feedRss = [];
     Element.forEach((e) => {
       const { getfeedData } = Selector[channelname];

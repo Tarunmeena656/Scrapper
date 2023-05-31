@@ -1,7 +1,7 @@
 const ChannelModel = require('../models/channel')
 
 
-exports.insertChannel = async (req, res , next) => {
+exports.insertChannel = async (req, res) => {
     try {
         let { channel_name, channel_link } = req.body;
         channel_name  = channel_name.toLowerCase().replace(" ", "");
@@ -13,6 +13,6 @@ exports.insertChannel = async (req, res , next) => {
 
     }
     catch (err) {
-       next(err)
+      console.log(err)
     }
 }

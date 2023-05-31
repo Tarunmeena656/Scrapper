@@ -1,6 +1,6 @@
-exports.ndtvnews = {
-    feedSelector: ".rss_list li",
-    newsSelector: ".ins_storybody p",
+exports.indiatv = {
+    feedSelector: '.rss li',
+    newsSelector: '.content p',
     getfeedData: (e, $) => {
         let category_link = $(e).find("a").attr("href");
         let category_name = $(e).find("a").text();
@@ -13,4 +13,5 @@ exports.ndtvnews = {
 
         return textContent
     }
+
 }
