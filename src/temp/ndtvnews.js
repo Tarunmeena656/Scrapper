@@ -1,3 +1,4 @@
+const {contentSelector} = require('../utils/NewsContent')
 exports.ndtvnews = {
     feedSelector: ".rss_list li",
     newsSelector: ".ins_storybody p",
@@ -6,11 +7,5 @@ exports.ndtvnews = {
         let category_name = $(e).find("a").text();
         return { category_link, category_name }
     },
-    getNewsContent: async function (page) {
-        const textContent = await page.$$eval(this.newsSelector, news => {
-             return (news.map(news => news.textContent)).join(' ')
-        })
-
-        return textContent
-    }
+    getNewsContent: contentSelector
 }

@@ -1,4 +1,4 @@
-const Selector = require('../temp/Selector')
+const fileObj = require('../temp/index')
 const { Browser } = require('../service/puppeteer_service');
 const NewsModel = require('../models/feedNews')
 
@@ -10,7 +10,7 @@ exports.newsProcessor = async (job, done) => {
 
         await page.goto(link, { timeout: 0, waitUntil: 'networkidle0' })
 
-        const long_description = await Selector[channel_name].getNewsContent(page);
+        const long_description = await fileObj[channel_name].getNewsContent(page);
 
         const payload = {
             title,

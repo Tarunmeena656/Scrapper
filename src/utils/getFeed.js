@@ -1,6 +1,6 @@
 var validUrl = require("valid-url");
 const cheerio = require("cheerio");
-const Selector = require('../temp/Selector');
+const fileObj = require('../temp');
 const axios = require("axios");
 const FeedModel = require("../models/feed");
 
@@ -14,9 +14,9 @@ const createAllElementList = async (channel) => {
 
     const channelname = channel_name.toLowerCase().replaceAll(" ", "");
 
-    if (channelname in Selector) {
+    if (channelname in fileObj) {
+      Element = $(fileObj[channelname]['feedSelector']).toArray();
 
-      Element = $(Selector[channelname]['feedSelector']).toArray();
     }
 
     return { Element, $, channelname };
@@ -32,16 +32,18 @@ exports.getAllFeedsFromElemets = async (channel) => {
     const { channel_link, _id } = channel;
 
     const { Element, $, channelname } = await createAllElementList(channel);
-    console.log(channelname)
+
     const feedRss = [];
+
     Element.forEach((e) => {
-      const { getfeedData } = Selector[channelname];
+      const { getfeedData } = fileObj[channelname];
       let { category_link, category_name } = getfeedData(e, $);
 
       if (!validUrl.isUri(category_link)) {
         const url = new URL(channel_link);
         category_link = url.origin.concat(category_link);
       }
+
       feedRss.push({
         category_name,
         category_link,

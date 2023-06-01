@@ -1,12 +1,13 @@
 const {contentSelector} = require('../utils/NewsContent')
-exports.news18 = {
-    feedSelector: ".subjective_things li ",
-    newsSelector: ".article-content-box p",
+exports.hindustantimes = {
+    feedSelector: '.clearfix p',
+    newsSelector: '.storyContent p',
     getfeedData: (e, $) => {
         let category_link = $(e).find("a").attr("href");
-        let category_name = $(e).find("a").text();
+        console.log(category_link)
+        let category_name = $(e).find('strong').text();
+        console.log(category_name)
         return { category_link, category_name }
     },
-
     getNewsContent: contentSelector
 }

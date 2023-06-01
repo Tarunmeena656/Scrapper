@@ -1,3 +1,4 @@
+const {contentSelector} = require('../utils/NewsContent')
 exports.theindianexpress = {
     feedSelector: ".rss_section p ",
     newsSelector: ".articlestorycontent p",
@@ -9,11 +10,5 @@ exports.theindianexpress = {
         return { category_link, category_name }
     },
 
-    getNewsContent: async function (page) {
-        const textContent = await page.$$eval(this.newsSelector, news => {
-            return (news.map(news => news.textContent)).join(' ');
-        });
-
-        return textContent;
-    }
+    getNewsContent: contentSelector
 }
