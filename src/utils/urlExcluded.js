@@ -18,6 +18,7 @@ exports.excludeFeed = {
     livemint :['Videos','Mutual Funds'],
     nytimes : ['TechnologyPersonal'],
     ajplusnet : [],
-    onmanorama : []
+    onmanorama : [],
+    bengalnews18 : ['লাইফস্টাইল','বিনোদন','ছবি','ভিডিও​']
   
 }

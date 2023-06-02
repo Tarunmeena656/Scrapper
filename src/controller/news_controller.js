@@ -50,7 +50,7 @@ exports.addNewsToQueue = async (req, res) => {
         }
 
     } catch (err) {
-        console.log("url failed----", err?.config?.url)
+        console.log(err)
 
     }
 };
