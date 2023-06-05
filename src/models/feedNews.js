@@ -3,6 +3,9 @@ const { Schema, model } = require("mongoose");
 
 const newsSchema = new Schema(
   {
+    Author : {
+         type : String
+    },
     title: {
       type: String,
       required: true,
@@ -34,5 +37,8 @@ const newsSchema = new Schema(
   },
   { timestamps: false, versionKey: false }
 );
+
+
+newsSchema.index({ long_description : 'text'})
 
 module.exports = newsModel = model("newsData", newsSchema);

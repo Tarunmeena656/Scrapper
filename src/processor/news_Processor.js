@@ -9,12 +9,14 @@ exports.newsProcessor = async (job, done) => {
         const page = await browserInstance.newPage()
 
         await page.goto(link, { timeout: 0, waitUntil: 'networkidle0' })
-
+        
         const long_description = await fileObj[channel_name].getNewsContent(page);
-
+        const Author = await fileObj[channel_name].getNewsAuthor(page);
+      
         const payload = {
-            title,
-            link,
+            Author : Author.trim(),
+            title : title.trim(),
+            link : link.trim(),
             short_description: description.replaceAll(/<[^>]*>/ig, "").trim(),
             published_date: published,
             long_description,

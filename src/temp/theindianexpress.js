@@ -1,7 +1,8 @@
-const {contentSelector} = require('../utils/NewsContent')
+const {contentSelector ,authorSelector} = require('../utils/NewsContent')
 exports.theindianexpress = {
     feedSelector: ".rss_section p ",
     newsSelector: ".articlestorycontent p",
+    authorSelector:'',
     getfeedData: (e, $) => {
         let category_link = $(e).find("a").attr("href");
         console.log(category_link)
@@ -10,5 +11,6 @@ exports.theindianexpress = {
         return { category_link, category_name }
     },
 
-    getNewsContent: contentSelector
+    getNewsContent: contentSelector,
+    getNewsAuthor : authorSelector
 }

@@ -29,7 +29,6 @@ const arenaConfig = Arena({
 
   ],
 
-
   // Make the arena dashboard become available at {my-site.com}/arena.
   basePath: '/arena',
 

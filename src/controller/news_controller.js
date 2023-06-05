@@ -41,7 +41,6 @@ exports.addNewsToQueue = async (req, res) => {
                     }
 
                 }
-                console.log(data.category_link)
 
             }
             catch (err) {

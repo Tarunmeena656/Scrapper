@@ -45,8 +45,8 @@ exports.getAllFeedsFromElemets = async (channel) => {
       }
 
       feedRss.push({
-        category_name,
-        category_link,
+        category_name : category_name.trim(),
+        category_link : category_link.trim(),
         channelName: channelname,
         channelId: _id,
       });

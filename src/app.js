@@ -20,11 +20,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(indexRouter)
 
 
-app.use((err ,req,res,next) => {
-    const { status = 500 , message = " something"} = err;
-    res.send(status)
-})
-
 
 //connection
 connection()

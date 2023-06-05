@@ -5,3 +5,11 @@ exports.contentSelector = async function (page) {
 
   return textContent;
 };
+
+
+exports.authorSelector = async function (page) {
+  let element = await page.$(this.authorSelector)
+  let author = await page.evaluate(el => el?.textContent, element)
+  console.log(author)
+  return author;
+};
