@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 
-const ministerSchema = new Schema(
+const stateSchema = new Schema(
   {
-    leader_name: {
+    state_name: {
       type: String,
       required: true,
     },
@@ -10,11 +10,11 @@ const ministerSchema = new Schema(
       type: String
     }],
     newsId : [{
-      type: Schema.Types.ObjectId,
-      ref:'newsModel'
+        type : Schema.Types.ObjectId,
+        ref : 'newsModel'
     }]
   },
   { timestamps: false, versionKey: false }
 );
 
-module.exports = feedModel = model("leader", ministerSchema);
+module.exports = stateModel = model("state", stateSchema);

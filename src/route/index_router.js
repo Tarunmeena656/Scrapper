@@ -4,6 +4,7 @@ const ChannelController = require('../controller/channel_controller');
 const feedController = require('../controller/feed_controller');
 const searchController = require('../controller/textSearch_Controller');
 const arenaConfig = require('../utils/bull_arena');
+const { getAllStateNews } = require('../utils/stateNews');
 
 
 
@@ -18,9 +19,13 @@ indexRouter.get('/start', feedController.startScrapping);
 
 
 
-// search a text 
+// search a leader text
 indexRouter.get('/search', searchController.textSearch);
 
+
+
+// search a state text
+indexRouter.get('/state', getAllStateNews);
 
 
 //route for arena
