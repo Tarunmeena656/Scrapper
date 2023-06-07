@@ -3,17 +3,20 @@ module.exports = {
         'Modi',
         'Prime Minsiter Modi',
         'Narendra Modi',
-        'PM Narendra Modi'
+        'PM Narendra Modi',
+        'নরেন্দ্র মোদী'
     ],
     'Amit shah': [
-        'Amit Shah',
+        'Amit shah',
         'Home Minister Shah',
         'अमित शाह',
         'അമിത് ഷാ'
     ],
     'Dr. Bharati Pravin Pawar': [
         'Bharati Pravin Pawar',
-        'Bharati Pawar'
+        'Dr. Bharati Pravin Pawar',
+        'Bharati Pawar',
+        'ভারতী প্রবীণ পাওয়ার'
     ],
     'JP Nadda': [
         'JP Nadda'
@@ -23,10 +26,15 @@ module.exports = {
         'Ayushman Yojana'
     ], 
     'Ayushman Bharat': [
-        'Ayushman Bharat'
+        'Ayushman Bharat',
+        'Ayushman bharat'
     ],
     'Neet Pg': [
         'Neet Pg',
-        'Neet'
+        'Neet',
+        'neet'
     ],
+    'Rajnath Singh':[
+        'Rajnath Singh'
+    ]
 }
