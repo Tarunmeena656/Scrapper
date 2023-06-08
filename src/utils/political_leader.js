@@ -6,8 +6,8 @@ module.exports = {
         'PM Narendra Modi',
         'নরেন্দ্র মোদী'
     ],
-    'Amit shah': [
-        'Amit shah',
+    'Amit Shah': [
+        'Amit Shah',
         'Home Minister Shah',
         'अमित शाह',
         'അമിത് ഷാ'
@@ -27,7 +27,8 @@ module.exports = {
     ], 
     'Ayushman Bharat': [
         'Ayushman Bharat',
-        'Ayushman bharat'
+        'Ayushman bharat',
+        'আয়ুষ্মান ভারত'
     ],
     'Neet Pg': [
         'Neet Pg',

@@ -3,7 +3,8 @@ module.exports = {
   "Uttar Pradesh": ["UP", "Uttar Pradesh"],
   'Maharashtra': ["MH", "Maharashtra"],
   "Gujarat" :['Gujarat'],
-  "Bengal" :["Bengal"]
+  "Bengal" :["Bengal"],
+  'Bihar' : ['Bihar']
 };
 
 
