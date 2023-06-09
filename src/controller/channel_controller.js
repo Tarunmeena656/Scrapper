@@ -1,4 +1,5 @@
-const ChannelModel = require('../models/channel')
+const ChannelModel = require('../models/channel');
+const { storeStateInDatabase, storeLeaderInDatabase } = require('./state_leader_controller');
 
 
 exports.insertChannel = async (req, res) => {
@@ -10,6 +11,8 @@ exports.insertChannel = async (req, res) => {
             await ChannelModel.create({ channel_name, channel_link })
             res.json({ message: "Successfully" })
         }
+        await storeStateInDatabase();
+        await storeLeaderInDatabase()
 
     }
     catch (err) {

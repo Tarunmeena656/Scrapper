@@ -21,7 +21,7 @@ module.exports = {
     'JP Nadda': [
         'JP Nadda'
     ],
-    'AyushmanYojana': [
+    'AyushmanYojana': [ 
         'AyushmanYojana',
         'Ayushman Yojana'
     ], 
