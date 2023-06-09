@@ -3,9 +3,9 @@ const stateNewsModel = require("../models/news_state_model");
 const { leaderStoreInDataBase } = require("../helper/leaderStore");
 const { stateStoreInDatabase } = require("../helper/stateStore");
 
-exports.findAllLeadersNews = async (req, res) => {
+exports.findAllLeadersNews = async (leaderId) => {
   try {
-    const { leaderId } = req.params;
+    // const { leaderId } = req.params;
     const leaderNewsArray = [];
     const LeadersNews = await leaderNewsModel.find({ leaderId });
     for (const leadernews of LeadersNews) {
@@ -14,15 +14,14 @@ exports.findAllLeadersNews = async (req, res) => {
     }
     await leaderStoreInDataBase(leaderId, leaderNewsArray);
 
-    res.send("Success");
+  
   } catch (err) {
     console.log(err);
   }
 };
 
-exports.findAllStateNews = async (req, res) => {
+exports.findAllStateNews = async (stateId) => {
   try {
-    const { stateId } = req.params;
     const stateNewsArray = [];
     const stateNews = await stateNewsModel.find({ stateId });
     for (const statenews of stateNews) {
@@ -31,7 +30,6 @@ exports.findAllStateNews = async (req, res) => {
     }
     await stateStoreInDatabase(stateId, stateNewsArray);
 
-    res.send("Success");
   } catch (err) {
     console.log(err);
   }

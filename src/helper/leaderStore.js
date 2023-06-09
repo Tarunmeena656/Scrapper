@@ -11,7 +11,7 @@ exports.leaderStoreInDataBase = async (leaderId, leaderNewsArray) => {
     for (const name of variant) {
       const News = await NewsModel.find({
         $text: {
-          $search: { $regex: name, $option: "i" }
+          $search: name
         },
       });
 
