@@ -6,13 +6,17 @@ exports.stateStoreInDatabase = async (stateId, stateNewsArray) => {
   try {
     const state = await stateModel.findById(stateId);
     if (!state) throw createError.NotFound("Not State found");
-    const { state_name, variant, _id } = state;
+    const { variant } = state;
     for (const name of variant) {
-      const News = await NewsModel.find({
-        $text: {
-          $search: name,
+      const News = await NewsModel.find(
+        {
+          $text: {
+            $search: name,
+            $caseSensitive: true
+          },
         },
-      });
+        { score: { $meta: "textScore" } }
+      ).sort({ score: { $meta: "textScore" } });
 
       for (const news of News) {
         const { _id, long_description } = news;

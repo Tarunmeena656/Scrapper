@@ -3,17 +3,23 @@ const NewsModel = require("../models/feedNews");
 const createError = require("http-errors");
 const leaderModel = require("../models/leader");
 
-exports.leaderStoreInDataBase = async (leaderId, leaderNewsArray) => {
+exports.leaderStoreInDataBase = async(leaderId, leaderNewsArray) => {
   try {
     const leader = await leaderModel.findById(leaderId);
     if (!leader) throw createError.NotFound("Leader not here");
-    const { leader_name, variant, _id } = leader;
+    const { variant } = leader;
     for (const name of variant) {
-      const News = await NewsModel.find({
-        $text: {
-          $search: name
+      console.log(`"\\"${name}\\""`);
+
+      const News = await NewsModel.find(
+        {
+          $text: {
+            $search: name,
+            $caseSensitive: true
+          }
         },
-      });
+        { score: { $meta: "textScore" } }
+      ).sort({ score: { $meta: "textScore" } });
 
       for (const news of News) {
         const { _id, long_description } = news;

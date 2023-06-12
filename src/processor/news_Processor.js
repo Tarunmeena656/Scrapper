@@ -2,6 +2,9 @@ const fileObj = require('../temp/index')
 const { Browser } = require('../service/puppeteer_service');
 const NewsModel = require('../models/feedNews')
 
+
+
+
 exports.newsProcessor = async (job, done) => {
     try {
         const { link, title, published, description, channel_name, channelId, feedId } = job.data;
@@ -14,10 +17,10 @@ exports.newsProcessor = async (job, done) => {
         const Author = await fileObj[channel_name].getNewsAuthor(page);
       
         const payload = {
-            Author : Author.trim(),
-            title : title.trim(),
-            link : link.trim(),
-            short_description: description.replaceAll(/<[^>]*>/ig, "").trim(),
+            Author : Author,
+            title : title,
+            link : link,
+            short_description: description.replaceAll(/<[^>]*>/ig, ""),
             published_date: published,
             long_description,
             feedId,
